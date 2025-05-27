@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Detection - SENTINEL</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/live-detection.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="https://images.pexels.com/photos/7516363/pexels-photo-7516363.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="SENTINEL Logo" class="logo-img">
+                <span>SENTINEL</span>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="criminal-database.html">Criminal Database</a></li>
+                    <li><a href="live-detection.html" class="active">Live Detection</a></li>
+                    <li><a href="system-logs.html">System Logs</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="admin-login.html" class="btn-login">Admin Login</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="detection-header">
+            <div class="container">
+                <h1>Live Criminal Detection</h1>
+                <p>Monitor live camera feeds and automatically detect registered criminals in real-time.</p>
+            </div>
+        </section>
+
+        <section class="detection-controls">
+            <div class="container">
+                <div class="control-options">
+                    <div class="source-selection">
+                        <label for="camera-source">Camera Source:</label>
+                        <select id="camera-source">
+                            <option value="webcam">Webcam</option>
+                            <option value="ip-camera-1">IP Camera 1 (Main Entrance)</option>
+                            <option value="ip-camera-2">IP Camera 2 (Parking Lot)</option>
+                            <option value="ip-camera-3">IP Camera 3 (Street Corner)</option>
+                            <option value="upload">Upload Video File</option>
+                        </select>
+                    </div>
+                    <div class="upload-file" id="upload-container" style="display: none;">
+                        <input type="file" id="video-upload" accept="video/*">
+                        <label for="video-upload">Select Video File</label>
+                    </div>
+                    <div class="sensitivity">
+                        <label for="detection-sensitivity">Detection Sensitivity:</label>
+                        <input type="range" id="detection-sensitivity" min="1" max="10" value="7">
+                        <span id="sensitivity-value">7</span>
+                    </div>
+                    <div class="alert-options">
+                        <label>Alert Options:</label>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="sms-alert" checked>
+                            <label for="sms-alert">SMS Alert</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="voice-alert" checked>
+                            <label for="voice-alert">Voice Alert</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="email-alert">
+                            <label for="email-alert">Email Alert</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="detection-actions">
+                    <button id="start-detection" class="btn btn-primary">Start Detection</button>
+                    <button id="stop-detection" class="btn btn-secondary" disabled>Stop Detection</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="detection-main">
+            <div class="container">
+                <div class="detection-grid">
+                    <div class="camera-feed">
+                        <div class="feed-container">
+                            <div class="video-overlay">
+                                <div class="status-indicator offline" id="status-indicator">
+                                    <span class="status-dot"></span>
+                                    <span class="status-text">Offline</span>
+                                </div>
+                                <div class="detection-frames" id="detection-frames"></div>
+                            </div>
+                            <div class="video-container">
+                                <video id="video-feed" autoplay muted playsinline>
+                                    Your browser does not support the video element.
+                                </video>
+                                <!-- Fallback/placeholder image when no video is playing -->
+                                <img src="https://images.pexels.com/photos/442151/pexels-photo-442151.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Camera feed placeholder" class="video-placeholder" id="video-placeholder">
+                                <canvas id="detection-canvas"></canvas>
+                            </div>
+                        </div>
+                        <div class="camera-controls">
+                            <button id="snapshot-btn" class="btn btn-secondary" disabled>Take Snapshot</button>
+                            <button id="toggle-detection-view" class="btn btn-secondary">Toggle Detection Overlay</button>
+                        </div>
+                    </div>
+                    <div class="detection-results">
+                        <h2>Detection Results</h2>
+                        <div class="results-container" id="results-container">
+                            <div class="no-detection-message">
+                                <p>No criminals detected yet.</p>
+                                <p>Start detection to begin scanning.</p>
+                            </div>
+                            <!-- Detection results will be dynamically added here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="recent-alerts">
+            <div class="container">
+                <h2>Recent Alerts</h2>
+                <div class="alerts-container">
+                    <table class="alerts-table">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Criminal ID</th>
+                                <th>Name</th>
+                                <th>Camera</th>
+                                <th>Alert Sent</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="alerts-table-body">
+                            <!-- Example alert rows, will be dynamically populated -->
+                            <tr>
+                                <td>2025-05-12 10:23:45</td>
+                                <td>CR-2025-0042</td>
+                                <td>John Doe</td>
+                                <td>IP Camera 1</td>
+                                <td>SMS, Voice</td>
+                                <td><button class="btn-small">View Details</button></td>
+                            </tr>
+                            <tr>
+                                <td>2025-05-12 09:15:22</td>
+                                <td>CR-2025-0104</td>
+                                <td>Jane Smith</td>
+                                <td>IP Camera 3</td>
+                                <td>SMS</td>
+                                <td><button class="btn-small">View Details</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Alert Modal -->
+    <div id="alert-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="alert-header">
+                <h2>⚠️ Criminal Detected!</h2>
+                <div class="danger-badge extreme">Extreme Danger</div>
+            </div>
+            <div class="alert-body">
+                <div class="alert-images">
+                    <div class="alert-image">
+                        <p>Database Photo</p>
+                        <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Criminal Database Photo">
+                    </div>
+                    <div class="alert-image">
+                        <p>Camera Capture</p>
+                        <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Camera Capture">
+                    </div>
+                </div>
+                <div class="alert-details">
+                    <div class="detail-group">
+                        <span class="detail-label">Name:</span>
+                        <span class="detail-value">John Doe</span>
+                    </div>
+                    <div class="detail-group">
+                        <span class="detail-label">Criminal ID:</span>
+                        <span class="detail-value">CR-2025-0042</span>
+                    </div>
+                    <div class="detail-group">
+                        <span class="detail-label">Crime:</span>
+                        <span class="detail-value">Armed Robbery</span>
+                    </div>
+                    <div class="detail-group">
+                        <span class="detail-label">Match Confidence:</span>
+                        <span class="detail-value">98.5%</span>
+                    </div>
+                    <div class="detail-group">
+                        <span class="detail-label">Detection Time:</span>
+                        <span class="detail-value">2025-05-12 10:23:45</span>
+                    </div>
+                    <div class="detail-group">
+                        <span class="detail-label">Camera:</span>
+                        <span class="detail-value">IP Camera 1 (Main Entrance)</span>
+                    </div>
+                    <div class="detail-group full-width">
+                        <span class="detail-label">Notes:</span>
+                        <span class="detail-value">Known to be armed and dangerous. Approach with extreme caution. History of violent behavior when confronted.</span>
+                    </div>
+                </div>
+                <div class="alert-actions">
+                    <button class="btn btn-secondary">View Full Profile</button>
+                    <button class="btn btn-primary">Send Alert Again</button>
+                </div>
+                <div class="alert-status">
+                    <h3>Alert Status:</h3>
+                    <div class="status-items">
+                        <div class="status-item">
+                            <span class="status-label">SMS Alert:</span>
+                            <span class="status-value sent">Sent at 10:23:47</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Voice Alert:</span>
+                            <span class="status-value sent">Sent at 10:23:48</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Email Alert:</span>
+                            <span class="status-value not-sent">Not Configured</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>SENTINEL</h3>
+                    <p>AI-powered criminal detection and alert system for enhanced public safety.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="criminal-database.html">Criminal Database</a></li>
+                        <li><a href="live-detection.html">Live Detection</a></li>
+                        <li><a href="system-logs.html">System Logs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>Email: info@sentinel-system.com</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 SENTINEL. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-use.html">Terms of Use</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/live-detection.js"></script>
+</body>
+</html>

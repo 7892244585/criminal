@@ -1,0 +1,591 @@
+/* Live Detection Styles */
+
+/* Header Section */
+.detection-header {
+    background-color: var(--primary-dark);
+    color: var(--white);
+    padding: 3rem 0 2rem;
+}
+
+.detection-header h1 {
+    color: var(--white);
+    margin-bottom: 1rem;
+}
+
+.detection-header p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.125rem;
+    max-width: 700px;
+}
+
+/* Controls Section */
+.detection-controls {
+    background-color: var(--white);
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--gray-light);
+}
+
+.control-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.source-selection,
+.sensitivity,
+.alert-options {
+    display: flex;
+    flex-direction: column;
+}
+
+.source-selection label,
+.sensitivity label,
+.alert-options label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--gray-dark);
+}
+
+.source-selection select {
+    padding: 0.75rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--gray-light);
+    font-size: 1rem;
+}
+
+.sensitivity {
+    display: flex;
+    flex-direction: column;
+}
+
+.sensitivity input[type="range"] {
+    margin: 0.5rem 0;
+    width: 100%;
+}
+
+.sensitivity span {
+    font-weight: 500;
+    color: var(--primary);
+    align-self: flex-end;
+}
+
+.alert-options .checkbox-group {
+    margin: 0.25rem 0;
+}
+
+.upload-file {
+    position: relative;
+    margin-top: 1rem;
+}
+
+.upload-file input[type="file"] {
+    position: absolute;
+    opacity: 0;
+    width: 0.1px;
+    height: 0.1px;
+    overflow: hidden;
+}
+
+.upload-file label {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--light);
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    border-radius: var(--radius);
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.upload-file label:hover {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+.detection-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+/* Main Detection Section */
+.detection-main {
+    padding: 2rem 0;
+    background-color: var(--light);
+}
+
+.detection-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5rem;
+}
+
+.camera-feed {
+    background-color: var(--white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.feed-container {
+    position: relative;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.status-indicator {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: var(--white);
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
+
+.status-indicator.offline .status-dot {
+    background-color: var(--gray);
+}
+
+.status-indicator.live .status-dot {
+    background-color: var(--success);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.detection-frames {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.detection-frame {
+    position: absolute;
+    border: 2px solid var(--accent);
+    border-radius: 3px;
+    animation: highlight 1s infinite alternate;
+}
+
+.detection-label {
+    position: absolute;
+    top: -25px;
+    left: 0;
+    background-color: var(--accent);
+    color: var(--white);
+    padding: 2px 8px;
+    border-radius: 3px 3px 0 0;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+@keyframes highlight {
+    from {
+        box-shadow: 0 0 0 rgba(220, 38, 38, 0.4);
+    }
+    to {
+        box-shadow: 0 0 8px rgba(220, 38, 38, 0.7);
+    }
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+}
+
+video, .video-placeholder, canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+canvas {
+    z-index: 1;
+}
+
+.video-placeholder {
+    background-color: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-size: 1.25rem;
+}
+
+.camera-controls {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: var(--dark);
+}
+
+.camera-controls button {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    border: none;
+}
+
+.camera-controls button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.detection-results {
+    background-color: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+}
+
+.detection-results h2 {
+    padding: 1.5rem;
+    margin: 0;
+    border-bottom: 1px solid var(--gray-light);
+    font-size: 1.25rem;
+}
+
+.results-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    max-height: 500px;
+}
+
+.no-detection-message {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--gray);
+}
+
+.detected-criminal {
+    background-color: var(--light);
+    border-radius: var(--radius);
+    margin-bottom: 1rem;
+    overflow: hidden;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.detected-criminal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background-color: var(--dark);
+    color: var(--white);
+}
+
+.detected-criminal-name {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.detected-criminal-match {
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.25rem 0.5rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 1rem;
+}
+
+.detected-criminal-content {
+    display: flex;
+    padding: 1rem;
+}
+
+.detected-criminal-img {
+    width: 80px;
+    height: 80px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-right: 1rem;
+}
+
+.detected-criminal-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.detected-criminal-info {
+    flex: 1;
+}
+
+.detected-criminal-details {
+    margin-bottom: 0.75rem;
+}
+
+.detected-criminal-detail {
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+    display: flex;
+}
+
+.detected-criminal-detail-label {
+    font-weight: 500;
+    width: 90px;
+    color: var(--gray-dark);
+}
+
+.detected-criminal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.detected-criminal-actions button {
+    font-size: 0.875rem;
+    padding: 0.35rem 0.75rem;
+}
+
+/* Recent Alerts Section */
+.recent-alerts {
+    padding: 3rem 0;
+    background-color: var(--white);
+}
+
+.alerts-container {
+    background-color: var(--light);
+    border-radius: var(--radius);
+    overflow-x: auto;
+}
+
+.alerts-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.alerts-table th, .alerts-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--gray-light);
+}
+
+.alerts-table th {
+    background-color: var(--primary-dark);
+    color: var(--white);
+    font-weight: 600;
+}
+
+.alerts-table tr:last-child td {
+    border-bottom: none;
+}
+
+.alerts-table tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.alerts-table tr:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Alert Modal */
+.alert-modal .modal-content {
+    max-width: 900px;
+}
+
+.alert-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--gray-light);
+}
+
+.alert-header h2 {
+    color: var(--danger-high);
+    margin: 0;
+}
+
+.alert-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.alert-images {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.alert-image {
+    flex: 1;
+    text-align: center;
+}
+
+.alert-image p {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.alert-image img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: var(--radius);
+    border: 1px solid var(--gray-light);
+}
+
+.alert-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background-color: var(--light);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+}
+
+.detail-group {
+    flex: 1;
+    min-width: calc(50% - 1rem);
+}
+
+.detail-group.full-width {
+    width: 100%;
+    flex-basis: 100%;
+}
+
+.detail-label {
+    font-weight: 600;
+    color: var(--gray-dark);
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.alert-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.alert-status {
+    background-color: var(--light);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+}
+
+.alert-status h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.125rem;
+}
+
+.status-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+}
+
+.status-label {
+    font-weight: 500;
+    width: 120px;
+}
+
+.status-value {
+    font-weight: 500;
+}
+
+.status-value.sent {
+    color: var(--success);
+}
+
+.status-value.not-sent {
+    color: var(--gray);
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+    .detection-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .alert-images {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .control-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .detection-actions {
+        flex-direction: column;
+    }
+    
+    .detection-actions button {
+        width: 100%;
+    }
+    
+    .camera-controls {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .camera-controls button {
+        width: 100%;
+    }
+    
+    .alert-details {
+        flex-direction: column;
+    }
+    
+    .detail-group {
+        min-width: 100%;
+    }
+}

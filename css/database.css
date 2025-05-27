@@ -1,0 +1,243 @@
+/* Criminal Database Styles */
+
+/* Header Section */
+.database-header {
+    background-color: var(--primary-dark);
+    color: var(--white);
+    padding: 3rem 0 2rem;
+}
+
+.database-header h1 {
+    color: var(--white);
+    margin-bottom: 1.5rem;
+}
+
+.database-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search-bar {
+    display: flex;
+    flex: 1;
+    max-width: 500px;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: var(--radius) 0 0 var(--radius);
+    font-size: 1rem;
+}
+
+.search-bar button {
+    border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+/* Filter Section */
+.database-content {
+    padding-top: 2rem;
+}
+
+.filters {
+    background-color: var(--white);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    margin-bottom: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: flex-end;
+    box-shadow: var(--shadow);
+}
+
+.filter-group {
+    flex: 1;
+    min-width: 200px;
+}
+
+.filter-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--gray-dark);
+}
+
+.filter-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--gray-light);
+    background-color: var(--white);
+    font-size: 1rem;
+}
+
+/* Criminal Grid */
+.criminal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.criminal-card {
+    background-color: var(--white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.criminal-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.criminal-img {
+    height: 200px;
+    position: relative;
+}
+
+.criminal-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.danger-level {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.danger-level.low {
+    background-color: var(--danger-low);
+    color: var(--white);
+}
+
+.danger-level.medium {
+    background-color: var(--danger-medium);
+    color: var(--white);
+}
+
+.danger-level.high {
+    background-color: var(--danger-high);
+    color: var(--white);
+}
+
+.danger-level.extreme {
+    background-color: var(--danger-extreme);
+    color: var(--white);
+}
+
+.criminal-info {
+    padding: 1.5rem;
+}
+
+.criminal-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.criminal-id {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--gray);
+    margin-bottom: 1rem;
+}
+
+.criminal-details {
+    margin-bottom: 1.25rem;
+}
+
+.detail-item {
+    display: flex;
+    margin-bottom: 0.5rem;
+    font-size: 0.9375rem;
+}
+
+.detail-label {
+    font-weight: 600;
+    width: 100px;
+    color: var(--gray-dark);
+}
+
+.detail-value {
+    flex: 1;
+}
+
+.criminal-description {
+    margin-bottom: 1.25rem;
+    font-size: 0.9375rem;
+}
+
+.criminal-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.criminal-actions button {
+    flex: 1;
+}
+
+/* Criminal Modal */
+.image-preview {
+    width: 100%;
+    height: 200px;
+    border: 1px dashed var(--gray-light);
+    border-radius: var(--radius);
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gray);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#modal-title {
+    margin-bottom: 1.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+    .criminal-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .database-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .search-bar {
+        max-width: none;
+        width: 100%;
+    }
+    
+    #add-criminal-btn {
+        width: 100%;
+    }
+    
+    .filters {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .filter-group {
+        width: 100%;
+    }
+}

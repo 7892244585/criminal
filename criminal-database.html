@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criminal Database - SENTINEL</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/database.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="https://images.pexels.com/photos/7516363/pexels-photo-7516363.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="SENTINEL Logo" class="logo-img">
+                <span>SENTINEL</span>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="criminal-database.html" class="active">Criminal Database</a></li>
+                    <li><a href="live-detection.html">Live Detection</a></li>
+                    <li><a href="system-logs.html">System Logs</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="admin-login.html" class="btn-login">Admin Login</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="database-header">
+            <div class="container">
+                <h1>Criminal Database</h1>
+                <div class="database-actions">
+                    <div class="search-bar">
+                        <input type="text" id="search-input" placeholder="Search by name, ID, or crime type...">
+                        <button id="search-btn" class="btn btn-secondary">Search</button>
+                    </div>
+                    <button id="add-criminal-btn" class="btn btn-primary">Add New Record</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="database-content">
+            <div class="container">
+                <div class="filters">
+                    <div class="filter-group">
+                        <label for="filter-crime">Crime Type</label>
+                        <select id="filter-crime">
+                            <option value="all">All</option>
+                            <option value="theft">Theft</option>
+                            <option value="robbery">Robbery</option>
+                            <option value="assault">Assault</option>
+                            <option value="cybercrime">Cybercrime</option>
+                            <option value="fraud">Fraud</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="filter-danger">Danger Level</label>
+                        <select id="filter-danger">
+                            <option value="all">All</option>
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                            <option value="extreme">Extreme</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="sort-by">Sort By</label>
+                        <select id="sort-by">
+                            <option value="name">Name</option>
+                            <option value="id">ID</option>
+                            <option value="danger-desc">Danger (High-Low)</option>
+                            <option value="danger-asc">Danger (Low-High)</option>
+                            <option value="date-desc">Date Added (Newest)</option>
+                            <option value="date-asc">Date Added (Oldest)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="criminal-grid" id="criminal-grid">
+                    <!-- Criminal profiles will be generated here by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Add/Edit Criminal Modal -->
+        <div id="criminal-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2 id="modal-title">Add New Criminal Record</h2>
+                <form id="criminal-form">
+                    <div class="form-group">
+                        <label for="criminal-name">Full Name*</label>
+                        <input type="text" id="criminal-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="criminal-id">ID Number*</label>
+                        <input type="text" id="criminal-id" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="criminal-image">Upload Image*</label>
+                        <input type="file" id="criminal-image" accept="image/*" required>
+                        <div class="image-preview" id="image-preview"></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="criminal-age">Age</label>
+                            <input type="number" id="criminal-age" min="10" max="100">
+                        </div>
+                        <div class="form-group">
+                            <label for="criminal-gender">Gender</label>
+                            <select id="criminal-gender">
+                                <option value="">Select</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="criminal-crime">Crime Type*</label>
+                        <select id="criminal-crime" required>
+                            <option value="">Select</option>
+                            <option value="theft">Theft</option>
+                            <option value="robbery">Robbery</option>
+                            <option value="assault">Assault</option>
+                            <option value="cybercrime">Cybercrime</option>
+                            <option value="fraud">Fraud</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="criminal-description">Crime Description*</label>
+                        <textarea id="criminal-description" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="criminal-last-seen">Last Seen (Location)</label>
+                        <input type="text" id="criminal-last-seen">
+                    </div>
+                    <div class="form-group">
+                        <label for="criminal-danger">Danger Level*</label>
+                        <select id="criminal-danger" required>
+                            <option value="">Select</option>
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                            <option value="extreme">Extreme</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" id="cancel-btn" class="btn btn-secondary">Cancel</button>
+                        <button type="submit" id="save-btn" class="btn btn-primary">Save Record</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>SENTINEL</h3>
+                    <p>AI-powered criminal detection and alert system for enhanced public safety.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="criminal-database.html">Criminal Database</a></li>
+                        <li><a href="live-detection.html">Live Detection</a></li>
+                        <li><a href="system-logs.html">System Logs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>Email: info@sentinel-system.com</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 SENTINEL. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-use.html">Terms of Use</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/database.js"></script>
+</body>
+</html>

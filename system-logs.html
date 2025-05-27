@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Logs - SENTINEL</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/logs.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="https://images.pexels.com/photos/7516363/pexels-photo-7516363.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="SENTINEL Logo" class="logo-img">
+                <span>SENTINEL</span>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="criminal-database.html">Criminal Database</a></li>
+                    <li><a href="live-detection.html">Live Detection</a></li>
+                    <li><a href="system-logs.html" class="active">System Logs</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="admin-login.html" class="btn-login">Admin Login</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="logs-header">
+            <div class="container">
+                <h1>System Logs & Alerts</h1>
+                <p>Track all system activities, detections, and alerts in one place.</p>
+            </div>
+        </section>
+
+        <section class="logs-controls">
+            <div class="container">
+                <div class="log-filters">
+                    <div class="filter-group">
+                        <label for="log-type">Log Type</label>
+                        <select id="log-type">
+                            <option value="all">All Logs</option>
+                            <option value="detection">Detection Events</option>
+                            <option value="alert">Alert Events</option>
+                            <option value="system">System Events</option>
+                            <option value="error">Error Events</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="date-range">Date Range</label>
+                        <select id="date-range">
+                            <option value="today">Today</option>
+                            <option value="yesterday">Yesterday</option>
+                            <option value="week" selected>Last 7 days</option>
+                            <option value="month">Last 30 days</option>
+                            <option value="custom">Custom Range</option>
+                        </select>
+                    </div>
+                    <div class="filter-group" id="custom-date-range" style="display: none;">
+                        <div class="date-inputs">
+                            <div>
+                                <label for="date-from">From</label>
+                                <input type="date" id="date-from">
+                            </div>
+                            <div>
+                                <label for="date-to">To</label>
+                                <input type="date" id="date-to">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label for="camera-filter">Camera</label>
+                        <select id="camera-filter">
+                            <option value="all">All Cameras</option>
+                            <option value="ip-camera-1">IP Camera 1 (Main Entrance)</option>
+                            <option value="ip-camera-2">IP Camera 2 (Parking Lot)</option>
+                            <option value="ip-camera-3">IP Camera 3 (Street Corner)</option>
+                            <option value="webcam">Webcam</option>
+                        </select>
+                    </div>
+                    <div class="search-box">
+                        <input type="text" id="log-search" placeholder="Search logs...">
+                        <button id="search-btn">Search</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="logs-dashboard">
+            <div class="container">
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <h3>24</h3>
+                        <p>Detections Today</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>18</h3>
+                        <p>Alerts Sent</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>99.8%</h3>
+                        <p>System Uptime</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>2</h3>
+                        <p>System Errors</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="logs-table">
+            <div class="container">
+                <div class="table-container">
+                    <table id="logs-table">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Event Type</th>
+                                <th>Description</th>
+                                <th>Source</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Sample log entries, will be dynamically generated -->
+                            <tr class="log-row detection-event">
+                                <td>2025-05-12 15:42:18</td>
+                                <td><span class="event-type detection">Detection</span></td>
+                                <td>Criminal detected: John Doe (CR-2025-0042)</td>
+                                <td>IP Camera 1</td>
+                                <td><span class="status success">Successful</span></td>
+                                <td><button class="btn-small">View Details</button></td>
+                            </tr>
+                            <tr class="log-row alert-event">
+                                <td>2025-05-12 15:42:19</td>
+                                <td><span class="event-type alert">Alert</span></td>
+                                <td>SMS alert sent to authorities</td>
+                                <td>System</td>
+                                <td><span class="status success">Delivered</span></td>
+                                <td><button class="btn-small">View Details</button></td>
+                            </tr>
+                            <tr class="log-row alert-event">
+                                <td>2025-05-12 15:42:20</td>
+                                <td><span class="event-type alert">Alert</span></td>
+                                <td>Voice alert triggered via dwani.ai</td>
+                                <td>System</td>
+                                <td><span class="status success">Delivered</span></td>
+                                <td><button class="btn-small">View Details</button></td>
+                            </tr>
+                            <tr class="log-row detection-event">
+                                <td>2025-05-12 14:18:05</td>
+                                <td><span class="event-type detection">Detection</span></td>
+                                <td>Criminal detected: Jane Smith (CR-2025-0104)</td>
+                                <td>IP Camera 3</td>
+                                <td><span class="status success">Successful</span></td>
+                                <td><button class="btn-small">View Details</button></td>
+                            </tr>
+                            <tr class="log-row alert-event">
+                                <td>2025-05-12 14:18:06</td>
+                                <td><span class="event-type alert">Alert</span></td>
+                                <td>SMS alert sent to authorities</td>
+                                <td>System</td>
+                                <td><span class="status success">Delivered</span></td>
+                                <td><button class="btn-small">View Details</button></td>
+                            </tr>
+                            <tr class="log-row system-event">
+                                <td>2025-05-12 12:00:00</td>
+                                <td><span class="event-type system">System</span></td>
+                                <td>Daily database backup completed</td>
+                                <td>System</td>
+                                <td><span class="status success">Successful</span></td>
+                                <td><button class="btn-small">View Details</button></td>
+                            </tr>
+                            <tr class="log-row error-event">
+                                <td>2025-05-12 10:15:32</td>
+                                <td><span class="event-type error">Error</span></td>
+                                <td>Connection to IP Camera 2 lost</td>
+                                <td>IP Camera 2</td>
+                                <td><span class="status error">Failed</span></td>
+                                <td><button class="btn-small">View Details</button></td>
+                            </tr>
+                            <tr class="log-row system-event">
+                                <td>2025-05-12 10:20:15</td>
+                                <td><span class="event-type system">System</span></td>
+                                <td>IP Camera 2 connection restored</td>
+                                <td>IP Camera 2</td>
+                                <td><span class="status success">Successful</span></td>
+                                <td><button class="btn-small">View Details</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination">
+                    <button class="pagination-btn" disabled>&laquo;</button>
+                    <button class="pagination-btn active">1</button>
+                    <button class="pagination-btn">2</button>
+                    <button class="pagination-btn">3</button>
+                    <button class="pagination-btn">4</button>
+                    <button class="pagination-btn">5</button>
+                    <button class="pagination-btn">&raquo;</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="export-section">
+            <div class="container">
+                <h2>Export Options</h2>
+                <div class="export-options">
+                    <button class="btn btn-secondary" id="export-csv">Export to CSV</button>
+                    <button class="btn btn-secondary" id="export-pdf">Export to PDF</button>
+                    <button class="btn btn-secondary" id="export-print">Print Logs</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Log Detail Modal -->
+    <div id="log-detail-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Log Event Details</h2>
+            <div class="log-detail-content">
+                <div class="log-metadata">
+                    <div class="metadata-group">
+                        <span class="metadata-label">Event ID:</span>
+                        <span class="metadata-value">EVENT-2025-05-12-154218</span>
+                    </div>
+                    <div class="metadata-group">
+                        <span class="metadata-label">Timestamp:</span>
+                        <span class="metadata-value">2025-05-12 15:42:18</span>
+                    </div>
+                    <div class="metadata-group">
+                        <span class="metadata-label">Event Type:</span>
+                        <span class="metadata-value"><span class="event-type detection">Detection</span></span>
+                    </div>
+                    <div class="metadata-group">
+                        <span class="metadata-label">Source:</span>
+                        <span class="metadata-value">IP Camera 1 (Main Entrance)</span>
+                    </div>
+                    <div class="metadata-group">
+                        <span class="metadata-label">Status:</span>
+                        <span class="metadata-value"><span class="status success">Successful</span></span>
+                    </div>
+                </div>
+                
+                <div class="log-description">
+                    <h3>Description</h3>
+                    <p>Criminal detected: John Doe (CR-2025-0042) with 98.5% confidence. Face recognition triggered at Main Entrance camera.</p>
+                </div>
+                
+                <div class="log-images">
+                    <div class="image-container">
+                        <h3>Database Image</h3>
+                        <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Database image">
+                    </div>
+                    <div class="image-container">
+                        <h3>Detected Image</h3>
+                        <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Detected image">
+                    </div>
+                </div>
+                
+                <div class="log-related">
+                    <h3>Related Events</h3>
+                    <ul>
+                        <li><a href="#">SMS Alert Sent (EVENT-2025-05-12-154219)</a></li>
+                        <li><a href="#">Voice Alert Triggered (EVENT-2025-05-12-154220)</a></li>
+                    </ul>
+                </div>
+                
+                <div class="log-technical">
+                    <h3>Technical Details</h3>
+                    <pre>{
+  "event_id": "EVENT-2025-05-12-154218",
+  "timestamp": "2025-05-12T15:42:18.456Z",
+  "event_type": "detection",
+  "criminal_id": "CR-2025-0042",
+  "confidence": 0.985,
+  "camera_id": "IP-CAM-001",
+  "frame_id": 24561,
+  "processing_time_ms": 128,
+  "face_coordinates": {
+    "x": 340,
+    "y": 215,
+    "width": 120,
+    "height": 140
+  }
+}</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>SENTINEL</h3>
+                    <p>AI-powered criminal detection and alert system for enhanced public safety.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="criminal-database.html">Criminal Database</a></li>
+                        <li><a href="live-detection.html">Live Detection</a></li>
+                        <li><a href="system-logs.html">System Logs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>Email: info@sentinel-system.com</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 SENTINEL. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-use.html">Terms of Use</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/logs.js"></script>
+</body>
+</html>

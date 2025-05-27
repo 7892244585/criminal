@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - SENTINEL</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="https://images.pexels.com/photos/7516363/pexels-photo-7516363.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="SENTINEL Logo" class="logo-img">
+                <span>SENTINEL</span>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="criminal-database.html">Criminal Database</a></li>
+                    <li><a href="live-detection.html">Live Detection</a></li>
+                    <li><a href="system-logs.html">System Logs</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                    <li><a href="admin-login.html" class="btn-login">Admin Login</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="contact-header">
+            <div class="container">
+                <h1>Contact Us</h1>
+                <p>Have questions or need assistance with SENTINEL? We're here to help.</p>
+            </div>
+        </section>
+
+        <section class="contact-main">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-form-container">
+                        <h2>Send a Message</h2>
+                        <form id="contact-form" class="contact-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name">Full Name*</label>
+                                    <input type="text" id="name" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="organization">Organization</label>
+                                    <input type="text" id="organization" name="organization">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="email">Email Address*</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="tel" id="phone" name="phone">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject*</label>
+                                <select id="subject" name="subject" required>
+                                    <option value="">Select a subject</option>
+                                    <option value="general">General Inquiry</option>
+                                    <option value="support">Technical Support</option>
+                                    <option value="implementation">Implementation Assistance</option>
+                                    <option value="sales">Sales & Pricing</option>
+                                    <option value="partnership">Partnership Opportunity</option>
+                                    <option value="report">Report an Issue</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message*</label>
+                                <textarea id="message" name="message" rows="6" required></textarea>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="privacy" name="privacy" required>
+                                <label for="privacy">I agree to the <a href="privacy-policy.html">privacy policy</a> and consent to being contacted regarding my inquiry.</label>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">Send Message</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-methods">
+                            <h2>Contact Information</h2>
+                            <div class="contact-method">
+                                <div class="method-icon email-icon"></div>
+                                <div class="method-details">
+                                    <h3>Email</h3>
+                                    <p><a href="mailto:info@sentinel-system.com">info@sentinel-system.com</a></p>
+                                    <p><a href="mailto:support@sentinel-system.com">support@sentinel-system.com</a> (Technical Support)</p>
+                                </div>
+                            </div>
+                            <div class="contact-method">
+                                <div class="method-icon phone-icon"></div>
+                                <div class="method-details">
+                                    <h3>Phone</h3>
+                                    <p>Main: +1 (555) 123-4567</p>
+                                    <p>Support: +1 (555) 987-6543</p>
+                                </div>
+                            </div>
+                            <div class="contact-method">
+                                <div class="method-icon location-icon"></div>
+                                <div class="method-details">
+                                    <h3>Office Location</h3>
+                                    <p>123 Security Plaza, Suite 500</p>
+                                    <p>Tech District, CA 90210</p>
+                                </div>
+                            </div>
+                            <div class="contact-method">
+                                <div class="method-icon hours-icon"></div>
+                                <div class="method-details">
+                                    <h3>Business Hours</h3>
+                                    <p>Monday - Friday: 9:00 AM - 6:00 PM PST</p>
+                                    <p>24/7 Emergency Technical Support Available</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="emergency-contact">
+                            <h3>Emergency Support</h3>
+                            <p>For urgent system issues affecting critical operations:</p>
+                            <div class="emergency-button">
+                                <a href="tel:+15551234567" class="btn btn-emergency">Call Emergency Support</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-section">
+            <div class="container">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What are SENTINEL's system requirements?</h3>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>SENTINEL requires a modern web browser with JavaScript enabled, and Python 3.8+ for backend operations. For camera integration, CCTV cameras with RTSP streaming capability are recommended. The system can run on most modern Windows, Linux, or macOS systems with at least 8GB RAM and a dedicated GPU for optimal performance.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>How accurate is the facial recognition?</h3>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our system achieves 99.7% accuracy under optimal conditions and maintains 95%+ accuracy in challenging conditions (poor lighting, partial face visibility, distance). False positives are minimized through our multi-stage verification process that considers multiple facial features and comparison points.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Is my data secure and private?</h3>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, SENTINEL employs end-to-end encryption for all data in transit and at rest. All facial data is stored securely in an encrypted database with strict access controls. Our system complies with relevant data protection regulations, and we do not share data with any third parties except as required by law enforcement with proper legal authorization.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>How does the alert system work?</h3>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>When a match is detected, SENTINEL automatically sends alerts through your configured channels, which can include SMS messages via Twilio, voice alerts via dwani.ai, and email notifications. These alerts include the match details, confidence score, location, timestamp, and a link to the full detection record in the system.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Can I integrate SENTINEL with existing security systems?</h3>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, SENTINEL offers integration capabilities with most modern security systems through our API. We can connect to existing CCTV infrastructure, access control systems, and security management platforms. Our team can provide custom integration solutions based on your specific system requirements.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>How many cameras can the system monitor simultaneously?</h3>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>The standard SENTINEL configuration can monitor up to 16 camera feeds simultaneously on a recommended hardware setup. For larger installations, our enterprise solution can scale to handle hundreds of cameras across multiple locations using distributed processing architecture.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>SENTINEL</h3>
+                    <p>AI-powered criminal detection and alert system for enhanced public safety.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="criminal-database.html">Criminal Database</a></li>
+                        <li><a href="live-detection.html">Live Detection</a></li>
+                        <li><a href="system-logs.html">System Logs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>Email: info@sentinel-system.com</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 SENTINEL. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-use.html">Terms of Use</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/contact.js"></script>
+</body>
+</html>
